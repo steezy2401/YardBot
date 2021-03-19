@@ -1,0 +1,3 @@
+const accessToken =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE2MTcyNzYwLCJleHAiOjE2MTYyNTkxNjB9.q5mtVsUyeOIyRFAmhSCT0k4ashy3TQDKSmEaNG3mwLQ"
+export default accessToken
