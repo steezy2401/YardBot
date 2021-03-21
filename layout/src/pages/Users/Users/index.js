@@ -12,15 +12,15 @@ import paginationFactory, {
 
 //Import Breadcrumb
 import Breadcrumbs from "../../../components/Common/Breadcrumb"
-import { getRaffles } from "../../../store/e-commerce/actions"
-import RafflesColumns from "./RafflesColumns"
+import { getUsers } from "../../../store/e-commerce/actions"
+import UsersColumns from "./UsersColumns"
 
-const Raffles = props => {
-  const { raffles, onGetRaffles } = props
-  const [raffleList, setRaffleList] = useState([])
+const Users = props => {
+  const { users, onGetUsers } = props
+  const [userList, setUserList] = useState([])
   const pageOptions = {
     sizePerPage: 10,
-    totalSize: raffles !== undefined ? raffles.length : 0, // replace later with size(raffleList),
+    totalSize: users !== undefined ? users.length : 0, // replace later with size(userList),
     custom: true,
     nextPageText: 'Next',
     prePageText: 'Previous',
@@ -28,28 +28,28 @@ const Raffles = props => {
   const { SearchBar } = Search
 
   useEffect(() => {
-    onGetRaffles(1)
-  }, [onGetRaffles])
+    onGetUsers(1)
+  }, [onGetUsers])
 
   useEffect(() => {
-    if (!isEmpty(raffles.rows)) {
-      setRaffleList(raffles.rows)
+    if (!isEmpty(users.rows)) {
+      setUserList(users.rows)
     } else {
-      setRaffleList([])
+      setUserList([])
     }
-  }, [raffles.rows])
+  }, [users.rows])
 
   // eslint-disable-next-line no-unused-vars
   const handleTableChange = (type, { page, searchText }) => {
-    onGetRaffles(page)
-    setRaffleList(raffles.rows)
+    onGetUsers(page)
+    setUserList(users.rows)
   }
 
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumbs title="Raffles"/>
+          <Breadcrumbs title="Users"/>
           <Row>
             <Col lg="12">
               <PaginationProvider
@@ -58,8 +58,8 @@ const Raffles = props => {
                 {({ paginationProps, paginationTableProps }) => (
                   <ToolkitProvider
                     keyField="id"
-                    data={raffleList || []}
-                    columns={RafflesColumns()}
+                    data={userList || []}
+                    columns={UsersColumns()}
                     bootstrap4
                     search
                   >
@@ -131,16 +131,16 @@ const Raffles = props => {
   )
 }
 
-Raffles.propTypes = {
-  onGetRaffles: PropTypes.func,
+Users.propTypes = {
+  onGetUsers: PropTypes.func,
 }
 
 const mapStateToProps = ({ ecommerce }) => ({
-  raffles: ecommerce.raffles,
+  users: ecommerce.users,
 })
 
 const mapDispatchToProps = dispatch => ({
-  onGetRaffles: (page) => dispatch(getRaffles(page)),
+  onGetUsers: (page) => dispatch(getUsers(page)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Raffles)
+export default connect(mapStateToProps, mapDispatchToProps)(Users)

@@ -14,6 +14,8 @@ import Calendar from "../pages/Calendar/index"
 
 import Raffles from "../pages/Raffles/Raffles/index"
 
+import Users from "../pages/Users/Users/index"
+
 // //Ecommerce Pages
 import EcommerceProducts from "../pages/Ecommerce/EcommerceProducts/index"
 import EcommerceProductDetail from "../pages/Ecommerce/EcommerceProducts/EcommerceProductDetail"
@@ -36,9 +38,9 @@ import InvoicesList from "../pages/Invoices/invoices-list"
 import InvoiceDetail from "../pages/Invoices/invoices-detail"
 
 //Contacts
-import ContactsGrid from "../pages/Contacts/contacts-grid"
-import ContactsList from "../pages/Contacts/ContactList/contacts-list"
-import ContactsProfile from "../pages/Contacts/ContactsProfile/contacts-profile"
+//import ContactsGrid from "../pages/Contacts/contacts-grid"
+//import ContactsList from "../pages/Contacts/ContactList/contacts-list"
+//import ContactsProfile from "../pages/Contacts/ContactsProfile/contacts-profile"
 
 //Pages
 import PagesStarter from "../pages/Utility/pages-starter"
@@ -128,6 +130,7 @@ import UserProfile from "../pages/Authentication/user-profile"
 
 const userRoutes = [
   { path: "/raffles", component: Raffles },
+  { path: "/users", component: Users },
 
   { path: "/dashboard", component: Dashboard },
   { path: "/calendar", component: Calendar },
@@ -158,9 +161,9 @@ const userRoutes = [
   { path: "/invoices-detail/:id", component: InvoiceDetail },
 
   // Contacts
-  { path: "/contacts-grid", component: ContactsGrid },
-  { path: "/contacts-list", component: ContactsList },
-  { path: "/contacts-profile", component: ContactsProfile },
+  //{ path: "/contacts-grid", component: ContactsGrid },
+  //{ path: "/contacts-list", component: ContactsList },
+  //{ path: "/contacts-profile", component: ContactsProfile },
 
   //Utility
   { path: "/pages-starter", component: PagesStarter },

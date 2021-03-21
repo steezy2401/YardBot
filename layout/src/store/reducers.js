@@ -22,7 +22,7 @@ import chat from "./chat/reducer"
 import invoices from "./invoices/reducer"
 
 //contacts
-import contacts from "./contacts/reducer"
+//import contacts from "./contacts/reducer"
 
 const rootReducer = combineReducers({
   // public
@@ -35,7 +35,7 @@ const rootReducer = combineReducers({
   chat,
   ecommerce,
   invoices,
-  contacts,
+  //contacts,
 })
 
 export default rootReducer

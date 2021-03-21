@@ -17,19 +17,10 @@ import {
   shops,
   invoiceList,
   cartData,
-  users as members,
+  //users as members,
   userProfile,
 } from "../../common/data"
 
-let users = [
-  {
-    uid: 1,
-    username: "admin",
-    role: "admin",
-    password: "123456",
-    email: "admin@themesbrand.com",
-  },
-]
 
 const fakeBackend = () => {
   // This sets the mock adapter on the default instance

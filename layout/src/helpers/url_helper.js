@@ -36,8 +36,11 @@ export const GET_ORDERS = "/orders"
 //CART DATA
 export const GET_CART_DATA = "/cart"
 
-//CUSTOMERS
+//RAFFLES
 export const GET_RAFLLES = "/raffle/getRaffles"
+
+//USERS
+export const GET_USERS = "/users/getUsers"
 
 //SHOPS
 export const GET_SHOPS = "/shops"
@@ -58,5 +61,5 @@ export const GET_PROJECT_DETAIL = "/project"
 export const GET_TASKS = "/tasks"
 
 //CONTACTS
-export const GET_USERS = "/users"
+//export const GET_USERS = "/users"
 export const GET_USER_PROFILE = "/user"

@@ -3,7 +3,10 @@ import { call, put, takeEvery } from "redux-saga/effects"
 // Ecommerce Redux States
 import {
   GET_CART_DATA,
+
   GET_RAFLLES,
+  GET_USERS,
+
   GET_ORDERS,
   GET_PRODUCT_DETAIL,
   GET_PRODUCTS,
@@ -12,8 +15,13 @@ import {
 import {
   getCartDataFail,
   getCartDataSuccess,
-  getCustomersFail,
-  getCustomersSuccess,
+
+  getRafflesFail,
+  getRafflesSuccess,
+
+  getUsersFail,
+  getUsersSuccess,
+
   getOrdersFail,
   getOrdersSuccess,
   getProductDetailFail,
@@ -27,7 +35,10 @@ import {
 //Include Both Helper File with needed methods
 import {
   getCartData,
+
   getRaffles,
+  getUsers,
+
   getOrders,
   getProducts,
   getShops,
@@ -70,12 +81,21 @@ function* fetchCartData() {
   }
 }
 
-function* fetchCustomers({page}) {
+function* fetchRaffles({page}) {
   try {
     const response = yield call(getRaffles, page)
-    yield put(getCustomersSuccess(response))
+    yield put(getRafflesSuccess(response))
   } catch (error) {
-    yield put(getCustomersFail(error))
+    yield put(getRafflesFail(error))
+  }
+}
+
+function* fetchUsers({page}) {
+  try {
+    const response = yield call(getUsers, page)
+    yield put(getUsersSuccess(response))
+  } catch (error) {
+    yield put(getUsersFail(error))
   }
 }
 
@@ -93,7 +113,10 @@ function* ecommerceSaga() {
   yield takeEvery(GET_PRODUCT_DETAIL, fetchProductDetail)
   yield takeEvery(GET_ORDERS, fetchOrders)
   yield takeEvery(GET_CART_DATA, fetchCartData)
-  yield takeEvery(GET_RAFLLES, fetchCustomers)
+
+  yield takeEvery(GET_RAFLLES, fetchRaffles)
+  yield takeEvery(GET_USERS, fetchUsers)
+
   yield takeEvery(GET_SHOPS, fetchShops)
 }
 

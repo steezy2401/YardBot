@@ -113,8 +113,11 @@ export const getOrders = () => get(url.GET_ORDERS)
 // get cart data
 export const getCartData = () => get(url.GET_CART_DATA)
 
-// get customers
-export const getRaffles = page => get(`${url.GET_RAFLLES}/${page}`)
+  // get raffles
+  export const getRaffles = page => get(`${url.GET_RAFLLES}/${page}`)
+
+  // get users
+  export const getUsers = page => get(`${url.GET_USERS}/${page}`)
 
 // get shops
 export const getShops = () => get(url.GET_SHOPS)
@@ -143,9 +146,9 @@ export const getProjectsDetails = id =>
 export const getTasks = () => get(url.GET_TASKS)
 
 // get contacts
-export const getUsers = () => get(url.GET_USERS)
+//export const getUsers = () => get(url.GET_USERS)
 
-export const getUserProfile = () => get(url.GET_USER_PROFILE)
+//export const getUserProfile = () => get(url.GET_USER_PROFILE)
 
 export {
   getLoggedInUser,

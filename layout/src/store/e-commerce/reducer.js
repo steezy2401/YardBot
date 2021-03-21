@@ -1,8 +1,12 @@
 import {
   GET_CART_DATA_FAIL,
   GET_CART_DATA_SUCCESS,
-  GET_CUSTOMERS_FAIL,
-  GET_CUSTOMERS_SUCCESS,
+
+  GET_RAFFLES_FAIL,
+  GET_RAFFLES_SUCCESS,
+  GET_USERS_FAIL,
+  GET_USERS_SUCCESS,
+
   GET_ORDERS_FAIL,
   GET_ORDERS_SUCCESS,
   GET_PRODUCTS_FAIL,
@@ -18,7 +22,8 @@ const INIT_STATE = {
   product: {},
   orders: [],
   cartData: {},
-  customers: [],
+  raffles: [],
+  users: [],
   shops: [],
   error: {},
 }
@@ -73,13 +78,25 @@ const Ecommerce = (state = INIT_STATE, action) => {
         error: action.payload,
       }
 
-    case GET_CUSTOMERS_SUCCESS:
+    case GET_RAFFLES_SUCCESS:
       return {
         ...state,
-        customers: action.payload,
+        raffles: action.payload,
       }
 
-    case GET_CUSTOMERS_FAIL:
+    case GET_RAFFLES_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      }
+
+    case GET_USERS_SUCCESS:
+      return {
+        ...state,
+        users: action.payload,
+      }
+
+    case GET_USERS_FAIL:
       return {
         ...state,
         error: action.payload,

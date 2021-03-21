@@ -8,9 +8,16 @@ import {
   GET_PRODUCTS,
   GET_PRODUCTS_FAIL,
   GET_PRODUCTS_SUCCESS,
+
   GET_RAFLLES,
-  GET_CUSTOMERS_FAIL,
-  GET_CUSTOMERS_SUCCESS,
+  GET_RAFFLES_FAIL,
+  GET_RAFFLES_SUCCESS,
+
+  GET_USERS,
+  GET_USERS_FAIL,
+  GET_USERS_SUCCESS,
+
+
   GET_SHOPS,
   GET_SHOPS_FAIL,
   GET_SHOPS_SUCCESS,
@@ -76,21 +83,6 @@ export const getCartDataFail = error => ({
   payload: error,
 })
 
-export const getRaffles = (page) => ({
-  type: GET_RAFLLES,
-  page: page,
-})
-
-export const getCustomersSuccess = customers => ({
-  type: GET_CUSTOMERS_SUCCESS,
-  payload: customers,
-})
-
-export const getCustomersFail = error => ({
-  type: GET_CUSTOMERS_FAIL,
-  payload: error,
-})
-
 export const getShops = () => ({
   type: GET_SHOPS,
 })
@@ -102,5 +94,36 @@ export const getShopsSuccess = shops => ({
 
 export const getShopsFail = error => ({
   type: GET_SHOPS_FAIL,
+  payload: error,
+})
+
+//PROD
+export const getRaffles = (page) => ({
+  type: GET_RAFLLES,
+  page: page,
+})
+
+export const getRafflesSuccess = raffles => ({
+  type: GET_RAFFLES_SUCCESS,
+  payload: raffles,
+})
+
+export const getRafflesFail = error => ({
+  type: GET_RAFFLES_FAIL,
+  payload: error,
+})
+
+export const getUsers = (page) => ({
+  type: GET_USERS,
+  page: page,
+})
+
+export const getUsersSuccess = users => ({
+  type: GET_USERS_SUCCESS,
+  payload: users,
+})
+
+export const getUsersFail = error => ({
+  type: GET_USERS_FAIL,
   payload: error,
 })
