@@ -9,6 +9,7 @@ import paginationFactory, {
   PaginationListStandalone,
   PaginationProvider,
 } from "react-bootstrap-table2-paginator"
+import { Link } from "react-router-dom"
 
 //Import Breadcrumb
 import Breadcrumbs from "../../../components/Common/Breadcrumb"
@@ -20,7 +21,7 @@ const Raffles = props => {
   const [raffleList, setRaffleList] = useState([])
   const pageOptions = {
     sizePerPage: 10,
-    totalSize: raffles !== undefined ? raffles.length : 0, // replace later with size(raffleList),
+    totalSize: raffles !== undefined ? raffles.count : 0, // replace later with size(raffleList),
     custom: true,
     nextPageText: 'Next',
     prePageText: 'Previous',
@@ -28,7 +29,7 @@ const Raffles = props => {
   const { SearchBar } = Search
 
   useEffect(() => {
-    onGetRaffles(1)
+    onGetRaffles(1, 10, 'id', 'desc', '')
   }, [onGetRaffles])
 
   useEffect(() => {
@@ -40,8 +41,10 @@ const Raffles = props => {
   }, [raffles.rows])
 
   // eslint-disable-next-line no-unused-vars
-  const handleTableChange = (type, { page, searchText }) => {
-    onGetRaffles(page)
+  const handleTableChange = (type, { page, searchText, sortField, sortOrder }) => {
+    console.log(sortField);
+    //onGetRaffles(page, limit, sort, sort_dir, search)
+    onGetRaffles(page, 10, sortField, sortOrder, searchText)
     setRaffleList(raffles.rows)
   }
 
@@ -49,7 +52,7 @@ const Raffles = props => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumbs title="Raffles"/>
+          <Breadcrumbs title="Raffles" />
           <Row>
             <Col lg="12">
               <PaginationProvider
@@ -66,7 +69,7 @@ const Raffles = props => {
                     {toolkitProps => (
                       <React.Fragment>
                         <div>
-                          <div>
+                          <Link to="/add-raffle">
                             <Button
                               type="button"
                               color="success"
@@ -75,12 +78,12 @@ const Raffles = props => {
                               <i className="mdi mdi-plus me-1"></i>
                                     Add raffle
                                   </Button>
-                          </div>
+                          </Link>
                           <Row>
                             <Col sm="12" md="6">
                               <Label>
                                 Show{" "}
-                                <Input type="select" className="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm d-inline-block" style={{ width: "auto"}}>
+                                <Input type="select" className="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm d-inline-block" style={{ width: "auto" }}>
                                   <option value="10">10</option>
                                   <option value="25">25</option>
                                   <option value="50">50</option>
@@ -140,7 +143,7 @@ const mapStateToProps = ({ ecommerce }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onGetRaffles: (page) => dispatch(getRaffles(page)),
+  onGetRaffles: (page, limit, sort, sort_dir, search) => dispatch(getRaffles(page, limit, sort, sort_dir, search)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Raffles)

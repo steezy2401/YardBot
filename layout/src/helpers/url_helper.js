@@ -2,6 +2,7 @@
 export const POST_FAKE_REGISTER = "/post-fake-register"
 
 //LOGIN
+export const POST_LOGIN = "/admin/signin"
 export const POST_FAKE_LOGIN = "/post-fake-login"
 export const POST_FAKE_JWT_LOGIN = "/post-jwt-login"
 export const POST_FAKE_PASSWORD_FORGET = "/fake-forget-pwd"
@@ -38,6 +39,10 @@ export const GET_CART_DATA = "/cart"
 
 //RAFFLES
 export const GET_RAFLLES = "/raffle/getRaffles"
+export const GET_RAFLLE = "/raffle/get"
+
+//ANNOUNCEMENTS
+export const GET_ANNOUNCEMENTS = "/announce/getAnnounces"
 
 //USERS
 export const GET_USERS = "/users/getUsers"

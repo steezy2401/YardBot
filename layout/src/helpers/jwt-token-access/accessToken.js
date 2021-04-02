@@ -1,3 +1,3 @@
 const accessToken =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE2MzEyMzgxLCJleHAiOjE2MTYzOTg3ODF9.uf4SelJ4HHCSVZeL7m7s3uMjZge2_xor6yj3-Z4XDmU"
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE2NzU5MDU2LCJleHAiOjE2MTY4NDU0NTZ9.nrBdrY0RSGKCtwCnpWjDCdxHV4ZfCPow_6IuIAz0oyw"
 export default accessToken

@@ -2,10 +2,15 @@ import {
   GET_CART_DATA_FAIL,
   GET_CART_DATA_SUCCESS,
 
+
+  GET_RAFFLE_FAIL,
+  GET_RAFFLE_SUCCESS,
   GET_RAFFLES_FAIL,
   GET_RAFFLES_SUCCESS,
   GET_USERS_FAIL,
   GET_USERS_SUCCESS,
+  GET_ANNOUNCEMENTS_SUCCESS,
+  GET_ANNOUNCEMENTS_FAIL,
 
   GET_ORDERS_FAIL,
   GET_ORDERS_SUCCESS,
@@ -23,6 +28,8 @@ const INIT_STATE = {
   orders: [],
   cartData: {},
   raffles: [],
+  raffle: {},
+  announcements: [],
   users: [],
   shops: [],
   error: {},
@@ -78,6 +85,18 @@ const Ecommerce = (state = INIT_STATE, action) => {
         error: action.payload,
       }
 
+    case GET_RAFFLE_SUCCESS:
+      return {
+        ...state,
+        raffle: action.payload,
+      }
+
+    case GET_RAFFLE_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      }
+
     case GET_RAFFLES_SUCCESS:
       return {
         ...state,
@@ -97,6 +116,18 @@ const Ecommerce = (state = INIT_STATE, action) => {
       }
 
     case GET_USERS_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      }
+
+    case GET_ANNOUNCEMENTS_SUCCESS:
+      return {
+        ...state,
+        announcements: action.payload,
+      }
+
+    case GET_ANNOUNCEMENTS_FAIL:
       return {
         ...state,
         error: action.payload,

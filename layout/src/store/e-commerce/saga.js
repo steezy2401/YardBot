@@ -4,8 +4,10 @@ import { call, put, takeEvery } from "redux-saga/effects"
 import {
   GET_CART_DATA,
 
+  GET_RAFLLE,
   GET_RAFLLES,
   GET_USERS,
+  GET_ANNOUNCEMENTS,
 
   GET_ORDERS,
   GET_PRODUCT_DETAIL,
@@ -16,11 +18,17 @@ import {
   getCartDataFail,
   getCartDataSuccess,
 
+  getRaffleFail,
+  getRaffleSuccess,
+
   getRafflesFail,
   getRafflesSuccess,
 
   getUsersFail,
   getUsersSuccess,
+
+  getAnnouncementsSuccess,
+  getAnnouncementsFail,
 
   getOrdersFail,
   getOrdersSuccess,
@@ -36,8 +44,10 @@ import {
 import {
   getCartData,
 
+  getRaffle,
   getRaffles,
   getUsers,
+  getAnnouncements,
 
   getOrders,
   getProducts,
@@ -81,21 +91,39 @@ function* fetchCartData() {
   }
 }
 
-function* fetchRaffles({page}) {
+function* fetchRaffle({ id }) {
   try {
-    const response = yield call(getRaffles, page)
+    const response = yield call(getRaffle, id)
+    yield put(getRaffleSuccess(response))
+  } catch (error) {
+    yield put(getRaffleFail(error))
+  }
+}
+
+function* fetchRaffles({ payload: { page, limit, sort, sort_dir, search } }) {
+  try {
+    const response = yield call(getRaffles, page, limit, sort, sort_dir, search)
     yield put(getRafflesSuccess(response))
   } catch (error) {
     yield put(getRafflesFail(error))
   }
 }
 
-function* fetchUsers({page}) {
+function* fetchUsers({ payload: { page, limit, sort, sort_dir, search } }) {
   try {
-    const response = yield call(getUsers, page)
+    const response = yield call(getUsers, page, limit, sort, sort_dir, search)
     yield put(getUsersSuccess(response))
   } catch (error) {
     yield put(getUsersFail(error))
+  }
+}
+
+function* fetchAnnouncements({ payload: { page, limit, sort, sort_dir, search } }) {
+  try {
+    const response = yield call(getAnnouncements, page, limit, sort, sort_dir, search)
+    yield put(getAnnouncementsSuccess(response))
+  } catch (error) {
+    yield put(getAnnouncementsFail(error))
   }
 }
 
@@ -114,8 +142,10 @@ function* ecommerceSaga() {
   yield takeEvery(GET_ORDERS, fetchOrders)
   yield takeEvery(GET_CART_DATA, fetchCartData)
 
+  yield takeEvery(GET_RAFLLE, fetchRaffle)
   yield takeEvery(GET_RAFLLES, fetchRaffles)
   yield takeEvery(GET_USERS, fetchUsers)
+  yield takeEvery(GET_ANNOUNCEMENTS, fetchAnnouncements)
 
   yield takeEvery(GET_SHOPS, fetchShops)
 }

@@ -13,10 +13,17 @@ import {
   GET_RAFFLES_FAIL,
   GET_RAFFLES_SUCCESS,
 
+  GET_RAFLLE,
+  GET_RAFFLE_FAIL,
+  GET_RAFFLE_SUCCESS,
+
   GET_USERS,
   GET_USERS_FAIL,
   GET_USERS_SUCCESS,
 
+  GET_ANNOUNCEMENTS,
+  GET_ANNOUNCEMENTS_SUCCESS,
+  GET_ANNOUNCEMENTS_FAIL,
 
   GET_SHOPS,
   GET_SHOPS_FAIL,
@@ -98,9 +105,24 @@ export const getShopsFail = error => ({
 })
 
 //PROD
-export const getRaffles = (page) => ({
+export const getRaffle = id => ({
+  type: GET_RAFLLE,
+  id,
+})
+
+export const getRaffleSuccess = raffle => ({
+  type: GET_RAFFLE_SUCCESS,
+  payload: raffle,
+})
+
+export const getRaffleFail = error => ({
+  type: GET_RAFFLE_FAIL,
+  payload: error,
+})
+
+export const getRaffles = (page, limit, sort, sort_dir, search) => ({
   type: GET_RAFLLES,
-  page: page,
+  payload: {page, limit, sort, sort_dir, search},
 })
 
 export const getRafflesSuccess = raffles => ({
@@ -113,9 +135,9 @@ export const getRafflesFail = error => ({
   payload: error,
 })
 
-export const getUsers = (page) => ({
+export const getUsers = (page, limit, sort, sort_dir, search) => ({
   type: GET_USERS,
-  page: page,
+  payload: {page, limit, sort, sort_dir, search},
 })
 
 export const getUsersSuccess = users => ({
@@ -125,5 +147,20 @@ export const getUsersSuccess = users => ({
 
 export const getUsersFail = error => ({
   type: GET_USERS_FAIL,
+  payload: error,
+})
+
+export const getAnnouncements = (page, limit, sort, sort_dir, search) => ({
+  type: GET_ANNOUNCEMENTS,
+  payload: {page, limit, sort, sort_dir, search},
+})
+
+export const getAnnouncementsSuccess = announcements => ({
+  type: GET_ANNOUNCEMENTS_SUCCESS,
+  payload: announcements,
+})
+
+export const getAnnouncementsFail = error => ({
+  type: GET_ANNOUNCEMENTS_FAIL,
   payload: error,
 })

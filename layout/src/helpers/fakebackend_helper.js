@@ -18,7 +18,7 @@ const isUserAuthenticated = () => {
 const postFakeRegister = (data) => post(url.POST_FAKE_REGISTER, data)
 
 // Login Method
-const postFakeLogin = data => post(url.POST_FAKE_LOGIN, data)
+const postFakeLogin = data => post(url.POST_LOGIN, data)
 
 // postForgetPwd
 const postFakeForgetPwd = data => post(url.POST_FAKE_PASSWORD_FORGET, data)
@@ -113,11 +113,17 @@ export const getOrders = () => get(url.GET_ORDERS)
 // get cart data
 export const getCartData = () => get(url.GET_CART_DATA)
 
-  // get raffles
-  export const getRaffles = page => get(`${url.GET_RAFLLES}/${page}`)
+// get raffles
+export const getRaffles = (page, limit, sort, sort_dir, search) => get(`${url.GET_RAFLLES}/${page}`, { params: { limit: limit, sort: sort, sort_dir: sort_dir, search: search } })
 
-  // get users
-  export const getUsers = page => get(`${url.GET_USERS}/${page}`)
+// get raffle
+export const getRaffle = id => get(`${url.GET_RAFLLE}/${id}`)
+
+// get users
+export const getUsers = (page, limit, sort, sort_dir, search) => get(`${url.GET_USERS}/${page}`, { params: { limit: limit, sort: sort, sort_dir: sort_dir, search: search } })
+
+// get announcements
+export const getAnnouncements = (page, limit, sort, sort_dir, search) => get(`${url.GET_ANNOUNCEMENTS}/${page}`, { params: { limit: limit, sort: sort, sort_dir: sort_dir, search: search } })
 
 // get shops
 export const getShops = () => get(url.GET_SHOPS)

@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { Button } from "reactstrap"
-import SweetAlert from "react-bootstrap-sweetalert"
+
 
 
 const UsersColumns = () => [
@@ -10,7 +9,7 @@ const UsersColumns = () => [
     text: "Username",
     sort: true,
     formatter: (cellContent, row) => (
-      <Link to={'/user/'+row.id} className="text-dark fw-bold">
+      <Link to={'/user/' + row.id} className="text-dark fw-bold">
         {row.username}
       </Link>
     ),
@@ -20,8 +19,8 @@ const UsersColumns = () => [
     text: "Telegram",
     sort: true,
     formatter: (cellContent, row) => (
-      <a rel="noreferrer" target="_blank" href={'https://t.me/'+row.telegram_link}>
-        {'@'+row.telegram_link}
+      <a rel="noreferrer" target="_blank" href={'https://t.me/' + row.telegram_link}>
+        {'@' + row.telegram_link}
       </a>
     ),
   },
@@ -44,12 +43,14 @@ const UsersColumns = () => [
     dataField: "menu",
     isDummyField: true,
     text: "Action",
-    formatter: (cell, row) => (
-      <>
-        <Link to={'/user/'+row.id} className="px-3 text-primary"><i className="uil uil-eye font-size-18"></i></Link>
-        <Link to="#" className="px-3 text-danger"><i className="uil uil-times-circle font-size-18"></i></Link>
-      </>
-    ),
+    formatter: (cellContent, row) => {
+
+      return (
+        <>
+          <Link to={'/user/' + row.id} className="px-3 text-primary"><i className="uil uil-eye font-size-18"></i></Link>
+        </>
+      );
+    },
   },
 ]
 

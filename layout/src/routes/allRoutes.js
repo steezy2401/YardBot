@@ -13,8 +13,11 @@ import Calendar from "../pages/Calendar/index"
 //Prod Pages
 
 import Raffles from "../pages/Raffles/Raffles/index"
+import Raffle from "../pages/Raffles/Raffle/index"
 
 import Users from "../pages/Users/Users/index"
+
+import Announcements from "../pages/Announcements/Announcements/index"
 
 // //Ecommerce Pages
 import EcommerceProducts from "../pages/Ecommerce/EcommerceProducts/index"
@@ -129,8 +132,10 @@ import LockScreen from "../pages/AuthenticationInner/auth-lock-screen"
 import UserProfile from "../pages/Authentication/user-profile"
 
 const userRoutes = [
+  { path: "/raffle/:id", component: Raffle },
   { path: "/raffles", component: Raffles },
   { path: "/users", component: Users },
+  { path: "/announcements", component: Announcements },
 
   { path: "/dashboard", component: Dashboard },
   { path: "/calendar", component: Calendar },

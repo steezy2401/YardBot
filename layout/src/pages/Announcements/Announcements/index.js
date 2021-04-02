@@ -2,25 +2,26 @@ import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { isEmpty } from "lodash"
-import { Col, Container, Row, Label, Input } from "reactstrap"
+import { Button, Col, Container, Row, Label, Input } from "reactstrap"
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit"
 import BootstrapTable from "react-bootstrap-table-next"
 import paginationFactory, {
   PaginationListStandalone,
   PaginationProvider,
 } from "react-bootstrap-table2-paginator"
+import { Link } from "react-router-dom"
 
 //Import Breadcrumb
 import Breadcrumbs from "../../../components/Common/Breadcrumb"
-import { getUsers } from "../../../store/e-commerce/actions"
-import UsersColumns from "./UsersColumns"
+import { getAnnouncements } from "../../../store/e-commerce/actions"
+import AnnouncementsColumns from "./AnnouncementsColumns"
 
-const Users = props => {
-  const { users, onGetUsers } = props
-  const [userList, setUserList] = useState([])
+const Announcements = props => {
+  const { announcements, onGetAnnouncements } = props
+  const [announcementList, setAnnouncementList] = useState([])
   const pageOptions = {
     sizePerPage: 10,
-    totalSize: users !== undefined ? users.length : 0, // replace later with size(userList),
+    totalSize: announcements !== undefined ? announcements.count : 0, // replace later with size(raffleList),
     custom: true,
     nextPageText: 'Next',
     prePageText: 'Previous',
@@ -28,29 +29,28 @@ const Users = props => {
   const { SearchBar } = Search
 
   useEffect(() => {
-    onGetUsers(1, 10, 'id', 'desc', '')
-  }, [onGetUsers])
+    onGetAnnouncements(1, 10, 'id', 'desc', '')
+  }, [onGetAnnouncements])
 
   useEffect(() => {
-    console.log(users.rows)
-    if (!isEmpty(users.rows)) {
-      setUserList(users.rows)
+    if (!isEmpty(announcements.rows)) {
+      setAnnouncementList(announcements.rows)
     } else {
-      setUserList([])
+      setAnnouncementList([])
     }
-  }, [users.rows])
+  }, [announcements.rows])
 
   // eslint-disable-next-line no-unused-vars
   const handleTableChange = (type, { page, searchText, sortField, sortOrder }) => {
-    onGetUsers(page, 10, sortField, sortOrder, searchText)
-    setUserList(users.rows)
+    onGetAnnouncements(page, 10, sortField, sortOrder, searchText)
+    setAnnouncementList(announcements.rows)
   }
 
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumbs title="Users"/>
+          <Breadcrumbs title="Announcements" />
           <Row>
             <Col lg="12">
               <PaginationProvider
@@ -59,19 +59,29 @@ const Users = props => {
                 {({ paginationProps, paginationTableProps }) => (
                   <ToolkitProvider
                     keyField="id"
-                    data={userList || []}
-                    columns={UsersColumns()}
+                    data={announcementList}
+                    columns={AnnouncementsColumns()}
                     bootstrap4
                     search
                   >
                     {toolkitProps => (
                       <React.Fragment>
                         <div>
+                          <Link to="/add-raffle">
+                            <Button
+                              type="button"
+                              color="success"
+                              className="waves-effect waves-light mb-3"
+                            >
+                              <i className="mdi mdi-plus me-1"></i>
+                                    Add announcement
+                                  </Button>
+                          </Link>
                           <Row>
                             <Col sm="12" md="6">
                               <Label>
                                 Show{" "}
-                                <Input type="select" className="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm d-inline-block" style={{ width: "auto"}}>
+                                <Input type="select" className="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm d-inline-block" style={{ width: "auto" }}>
                                   <option value="10">10</option>
                                   <option value="25">25</option>
                                   <option value="50">50</option>
@@ -122,16 +132,16 @@ const Users = props => {
   )
 }
 
-Users.propTypes = {
-  onGetUsers: PropTypes.func,
+Announcements.propTypes = {
+  onGetAnnouncements: PropTypes.func,
 }
 
 const mapStateToProps = ({ ecommerce }) => ({
-  users: ecommerce.users,
+  announcements: ecommerce.announcements,
 })
 
 const mapDispatchToProps = dispatch => ({
-  onGetUsers: (page, limit, sort, sort_dir, search) => dispatch(getUsers(page, limit, sort, sort_dir, search)),
+  onGetAnnouncements: (page, limit, sort, sort_dir, search) => dispatch(getAnnouncements(page, limit, sort, sort_dir, search)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(Announcements)

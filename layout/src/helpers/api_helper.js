@@ -22,7 +22,7 @@ axiosApi.interceptors.response.use(
 
 export async function get(url, config = {}) {
   console.log(url);
-  let res = await axiosApi.get(url, { ...config }).then(response => response.data.data).catch(err => console.log(err))
+  let res = await axiosApi.get(url, { ...config }).then(response => response.data.data).catch(err => [])
   
   console.log(res);
 

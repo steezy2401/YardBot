@@ -39,23 +39,32 @@ function statusFromatter (cell, row) {
 
 const RafflesColumns = () => [
   {
-    dataField: "work_name",
-    text: "Name",
+    dataField: "itemTitle",
+    text: "Title",
     sort: true,
     formatter: (cellContent, row) => (
       <Link to={'/raffle/'+row.id} className="text-dark fw-bold">
-        {row.work_name}
+        {row.itemTitle}
       </Link>
     ),
+  },
+  {
+    dataField: "work_name",
+    text: "Work name",
+    sort: true,
   },
   {
     dataField: "publication_date",
     text: "Publication Date",
     sort: true,
     formatter: (cellContent, row) => {
-      let d = new Date(row.publication_date);
-      let date = ("0" + d.getDate()).slice(-2)+'.'+("0" + (d.getMonth()+1)).slice(-2)+'.'+d.getFullYear()+' '+("0" + d.getHours()).slice(-2)+':'+("0" + d.getMinutes()).slice(-2);
-
+      let date
+      if (row.publication_date !== null) {
+        let d = new Date(row.publication_date);
+        date = ("0" + d.getDate()).slice(-2)+'.'+("0" + (d.getMonth()+1)).slice(-2)+'.'+d.getFullYear()+' '+("0" + d.getHours()).slice(-2)+':'+("0" + d.getMinutes()).slice(-2);  
+      } else {
+        date = 'N/A'
+      }
       return (
         date
       );
@@ -66,8 +75,13 @@ const RafflesColumns = () => [
     text: "Closing Date",
     sort: true,
     formatter: (cellContent, row) => {
-      let d = new Date(row.results_date);
-      let date = ("0" + d.getDate()).slice(-2)+'.'+("0" + (d.getMonth()+1)).slice(-2)+'.'+d.getFullYear()+' '+("0" + d.getHours()).slice(-2)+':'+("0" + d.getMinutes()).slice(-2);
+      let date
+      if (row.results_date !== null) {
+        let d = new Date(row.results_date);
+        date = ("0" + d.getDate()).slice(-2)+'.'+("0" + (d.getMonth()+1)).slice(-2)+'.'+d.getFullYear()+' '+("0" + d.getHours()).slice(-2)+':'+("0" + d.getMinutes()).slice(-2);  
+      } else {
+        date = 'N/A'
+      }
 
       return (
         date
@@ -79,9 +93,13 @@ const RafflesColumns = () => [
     text: "Relusts Date",
     sort: true,
     formatter: (cellContent, row) => {
-      let d = new Date(row.results_date);
-      let date = ("0" + d.getDate()).slice(-2)+'.'+("0" + (d.getMonth()+1)).slice(-2)+'.'+d.getFullYear()+' '+("0" + d.getHours()).slice(-2)+':'+("0" + d.getMinutes()).slice(-2);
-
+      let date
+      if (row.results_date !== null) {
+        let d = new Date(row.results_date);
+        date = ("0" + d.getDate()).slice(-2)+'.'+("0" + (d.getMonth()+1)).slice(-2)+'.'+d.getFullYear()+' '+("0" + d.getHours()).slice(-2)+':'+("0" + d.getMinutes()).slice(-2);
+      } else {
+        date = 'N/A'
+      }
       return (
         date
       );
@@ -90,20 +108,24 @@ const RafflesColumns = () => [
   {
     dataField: "reg_count",
     text: "Registered",
+    sort: true,
   },
   {
     dataField: "win_count",
     text: "Winners",
+    sort: true,
   },
   {
     dataField: "profit",
     text: "Profit",
     formatter: (cellContent, row) => {
       let profit = row.profit
-      if (profit.length > 0) {
-        profit = row.profit+'₽'
-      } else {
-        profit = 'N/A'
+      if (profit !== undefined) {
+        if (profit.length > 0) {
+          profit = row.profit+'₽'
+        } else {
+          profit = 'N/A'
+        }
       }
 
       return (
