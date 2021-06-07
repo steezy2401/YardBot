@@ -5,16 +5,28 @@
 > Yard Raffle Bot is a native tool to manage raffle participants based on a referral system
 > The project cosists of a Dashboard, REST API and Telegram Bot
 
-## Install
+## Project Structure
+
+- REST API
+- Admin Dashboard
+- Telegram Bot
+
+## REST API
 
 ```sh
 npm run start
 ```
 
-## Run tests
+## Telegram bot (TS)
 
+### Developer debug
 ```sh
-npm run dev
+npm run start
+```
+
+### Build
+```sh
+npm run build
 ```
 
 ## Author
